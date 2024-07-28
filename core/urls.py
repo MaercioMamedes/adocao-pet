@@ -16,13 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from adopet.views import pets_view, register_pet_view, api_animal, animal_detail
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
-    path('pets/', pets_view, name='pets_index'),
-    path('api/pets/', api_animal),
-    path('api/pets/<int:pk>', animal_detail ),
-    path('pets/register', register_pet_view, name='pets_register'),
+    path('pets/', include('adopet.urls')),
+    path('api/', include('adopet.urls_api'))
 ]
