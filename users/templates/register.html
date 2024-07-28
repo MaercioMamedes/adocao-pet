@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{message}}
+            </div>
+        {% endfor %}
+        <form method="POST">
+            {% csrf_token %}
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email"><br>
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password"><br>
+            <label for="username">Nome</label>
+            <input type="text" name="username" id="username"><br>
+            <label for="phone">Telefone</label>
+            <input type="tel" name="phone" id="phone"><br>
+            <label for="whatsapp">Whatsapp</label>
+            <input type="tel" name="whatsapp" id="whatsapp"><br>
+            <label for="estado">Estado</label>
+            <input type="text" name="estado" id="estado"><br>
+            <label for="cidade">Cidade</label>
+            <input type="text" name="cidade" id="cidade"><br>
+            <input type="submit" value="Salvar" class="btn btn-primary">
+    </form>
+</div>
+{% endblock %}
