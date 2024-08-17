@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'adopet',
     'users',
     'rest_framework',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+"""
 REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework_xml.parsers.XMLParser',
@@ -135,4 +138,11 @@ REST_FRAMEWORK = {
         'rest_framework_xml.renderers.XMLRenderer',
         'rest_framework.renderers.JSONRenderer',
     ),
+}
+"""
+
+REST_FRAMEWORK = {
+    'DEFAULT_ATUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAtuthentication'
+    )
 }

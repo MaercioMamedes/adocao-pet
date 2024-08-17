@@ -3,10 +3,11 @@ from django.http import HttpResponse
 from adopet.models import Animal, Tutor
 from adopet.forms import CreatePetForm
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, parser_classes, renderer_classes
+from rest_framework.decorators import api_view, parser_classes, renderer_classes, permission_classes, authentication_classes
 from .serializers import AnimalSerializer
 from rest_framework import status
-
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
 from rest_framework_xml.parsers import XMLParser
 from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
@@ -34,7 +35,9 @@ def register_pet_view(request):
 
 
 
+
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
 # @renderer_classes(XMLRenderer)
 # @parser_classes(XMLParser)
 def api_animal(request):
@@ -82,3 +85,6 @@ def animal_detail(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class AnimalViewSet(ModelViewSet):
+    serializer_class = AnimalSerializer
+    queryset = Animal.objects.all()
